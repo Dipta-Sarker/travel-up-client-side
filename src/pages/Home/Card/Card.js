@@ -6,7 +6,7 @@ import 'react-photo-view/dist/react-photo-view.css';
 
 const Card = ({ service,btn }) => {
   const {review, img, details, price, title,_id } = service;
-  console.log(service.length)
+  
   return (
     <div>
       <div className="card w-96 h-full bg-base-100 shadow-xl">
@@ -42,7 +42,7 @@ const Card = ({ service,btn }) => {
 
           <div className='text-center'>
             {btn === 2 ? 
-              <Link to={`/details/${_id}`}>
+              <Link to={`/servicesDetails/${_id}`}>
                 <button className=" btn btn-primary">View Details</button>
               </Link> :
               <></>

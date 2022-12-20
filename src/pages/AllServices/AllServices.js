@@ -7,7 +7,7 @@ const AllServices = () => {
     return (
         <div className='my-20 grid md:grid-cols-2 lg:grid-cols-3 gap-3 justify-items-center'>
             {
-                allservices.map(services => <Card btn={2} service={services}></Card>)
+                allservices.map(services => <Card btn={2} key={services._id} service={services}></Card>)
             }
         </div>
     );

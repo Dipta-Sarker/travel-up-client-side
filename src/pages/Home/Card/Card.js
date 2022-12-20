@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { StarIcon } from '@heroicons/react/24/solid'
-
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const Card = ({ service,btn }) => {
   const {review, img, details, price, title,_id } = service;
@@ -9,7 +10,12 @@ const Card = ({ service,btn }) => {
   return (
     <div>
       <div className="card w-96 h-full bg-base-100 shadow-xl">
-        <figure><img src={img} alt="Shoes" /></figure>
+      <PhotoProvider>
+      <PhotoView src={img}>
+      <figure><img src={img} alt="Shoes" /></figure>
+      </PhotoView>
+    </PhotoProvider>
+
         <div className="card-body">
           <h2 className="card-title font-bold">
             {title}

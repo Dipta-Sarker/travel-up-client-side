@@ -40,8 +40,8 @@ const handleSignOut = () =>{
 
           {user?.email ?
             <>
-              <Link to='/myreviews'><li><a>My Reviews</a></li></Link>
-              <Link to='/addreview'><li><a>Add Review</a></li></Link>
+              <Link to='/myReviews'><li><a>My Reviews</a></li></Link>
+              <Link to='/addService'><li><a>Add Service</a></li></Link>
               <button onClick={handleSignOut} className="btn btn-outline btn-secondary">SignOut</button>
             </>
             :

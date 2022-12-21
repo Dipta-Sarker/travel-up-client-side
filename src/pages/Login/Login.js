@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { contexApi } from '../../AuthContex/AuthContex';
 
 const Login = () => {
+
+  const {loginUser} = useContext(contexApi)
+
 
     const handleLogin = (event) =>{
         event.preventDefault()
@@ -9,6 +13,12 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email,password)
+        loginUser(email,password)
+        .then(result => {
+          const user = result.user;
+          console.log(user)
+        })
+        .catch(e =>console.log(e)) 
         
     }
     return (

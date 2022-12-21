@@ -1,5 +1,5 @@
-import React, { createContext, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import React, { createContext, useEffect, useState } from 'react';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import app from '../firebase/firebase.init'
 export const contexApi = createContext()
 
@@ -13,14 +13,23 @@ const AuthContex = ({children}) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
+    const loginUser =(email,password) =>{
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+
+
+    useEffect(()=>{
+        const subscribs = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser)
+        })
+        return () => subscribs;
+    },[]) 
 
 
 
 
 
-
-
-    const authInfo ={user,createUser}
+    const authInfo ={user,createUser,loginUser}
     return (
         <contexApi.Provider value={authInfo}>
             {children}

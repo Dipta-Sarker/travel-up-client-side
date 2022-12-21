@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StarIcon } from '@heroicons/react/24/solid'
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
+import { contexApi } from '../../AuthContex/AuthContex';
 
 const ServicesDetails = () => {
     const [data] = useLoaderData()
+    const {user } = useContext(contexApi)
     const { title, img, price, review, _id, details } = data;
 
 
@@ -45,37 +47,41 @@ const ServicesDetails = () => {
             <div className='w-full'>
             <h1 className='text-center font-bold text-4xl border-b-4 border-emerald-500'>Review</h1>
 
-                <div className="card w-full mr-10 mt-20 shadow-2xl bg-base-200">
-                    <form onSubmit={handleSubmit} className="card-body">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Text</span>
-                            </label>
-                            <input type="text" name='text' placeholder="Write your review" className="input input-bordered" />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Name</span>
-                            </label>
-                            <input type="text" name='name' placeholder="Enter Your Name" className="input input-bordered" />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
-                            <input type="text" name='email' placeholder="Enter Your Name" className="input input-bordered" />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Services Name</span>
-                            </label>
-                            <input type="text"  defaultValue='' className="input input-bordered" />
-                        </div>
-                        <div className="form-control mt-6">
-                            <button className="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-                </div>
+               {user?.email?
+                     <div className="card w-full mr-10 mt-20 shadow-2xl bg-base-200">
+                     <form onSubmit={handleSubmit} className="card-body">
+                         <div className="form-control">
+                             <label className="label">
+                                 <span className="label-text">Text</span>
+                             </label>
+                             <input type="text" name='text' placeholder="Write your review" className="input input-bordered" />
+                         </div>
+                         <div className="form-control">
+                             <label className="label">
+                                 <span className="label-text">Name</span>
+                             </label>
+                             <input type="text" name='name' placeholder="Enter Your Name" className="input input-bordered" />
+                         </div>
+                         <div className="form-control">
+                             <label className="label">
+                                 <span className="label-text">Email</span>
+                             </label>
+                             <input type="text" name='email' placeholder="Enter Your Name" className="input input-bordered" />
+                         </div>
+                         <div className="form-control">
+                             <label className="label">
+                                 <span className="label-text">Services Name</span>
+                             </label>
+                             <input type="text"  defaultValue='' className="input input-bordered" />
+                         </div>
+                         <div className="form-control mt-6">
+                             <button className="btn btn-primary">Submit</button>
+                         </div>
+                     </form>
+                 </div>
+               :
+               <h1 className='mt-20 text-center font-bold text-4xl'>Please <Link className='text-orange-500' to='/login'>login</Link> to add a review</h1>
+            }
             </div>
 
         </div>

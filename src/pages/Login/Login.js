@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { contexApi } from '../../AuthContex/AuthContex';
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
 
-  const {loginUser} = useContext(contexApi)
+  const {loginUser,google} = useContext(contexApi)
 
 
     const handleLogin = (event) =>{
@@ -21,6 +22,16 @@ const Login = () => {
         .catch(e =>console.log(e)) 
         
     }
+
+const  handleSigninGoogle = () =>{
+  google()
+  .then(result => {
+    const user = result.user;
+    console.log(user)
+  })
+  .catch(e => console.error(e))
+}
+
     return (
         
   <div className="hero-content flex-col bg-base-200 my-20">
@@ -47,7 +58,9 @@ const Login = () => {
         <div className="form-control mt-6">
           <button className="btn btn-primary">Login</button>
         </div>
+      <button onClick={handleSigninGoogle} className="btn btn-outline btn-success mt-5"><FaGoogle/> Google</button>
       </form>
+
     </div>
   
 </div>

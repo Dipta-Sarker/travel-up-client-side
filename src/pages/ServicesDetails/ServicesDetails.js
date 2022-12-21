@@ -65,6 +65,12 @@ const ServicesDetails = () => {
                             </label>
                             <input type="text" name='email' placeholder="Enter Your Name" className="input input-bordered" />
                         </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Services Name</span>
+                            </label>
+                            <input type="text"  defaultValue='' className="input input-bordered" />
+                        </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Submit</button>
                         </div>

@@ -9,26 +9,32 @@ const provider = new GoogleAuthProvider();
 const AuthContex = ({children}) => {
 
     const [user, setUser] = useState([])
+    const [loadding,setLoadding]=useState(true)
 
     const createUser = (email,password) =>{
+        setLoadding(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const loginUser =(email,password) =>{
+        setLoadding(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     const google = () =>{
+        setLoadding(true)
         return signInWithPopup(auth, provider)
     }
 
     const logOut = () =>{
+        setLoadding(true)
         return signOut(auth)
     }
 
     useEffect(()=>{
         const subscribs = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
+            setLoadding(false)
         })
         return () => subscribs;
     },[]) 
@@ -37,7 +43,7 @@ const AuthContex = ({children}) => {
 
 
 
-    const authInfo ={user,logOut,createUser,loginUser,google}
+    const authInfo ={loadding,user,logOut,createUser,loginUser,google}
     return (
         <contexApi.Provider value={authInfo}>
             {children}

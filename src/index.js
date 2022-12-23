@@ -4,13 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthContex from './AuthContex/AuthContex';
-
+import { HelmetProvider } from 'react-helmet-async';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AuthContex>
-     <App />
-    </AuthContex>
+    <HelmetProvider>
+      <AuthContex>
+        <App />
+      </AuthContex>
+    </HelmetProvider>
   </React.StrictMode>
 );
 

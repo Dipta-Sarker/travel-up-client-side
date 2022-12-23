@@ -1,11 +1,15 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { contexApi } from '../../AuthContex/AuthContex';
 import { FaGoogle } from "react-icons/fa";
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
 
   const {loginUser,google} = useContext(contexApi)
+let location = useLocation()
+const navigate = useNavigate()
+let from = location.state?.from?.pathname || "/";
 
 
     const handleLogin = (event) =>{
@@ -13,11 +17,12 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email,password)
         loginUser(email,password)
         .then(result => {
           const user = result.user;
+          navigate(from, { replace: true });
           console.log(user)
+          form.reset()
         })
         .catch(e =>console.log(e)) 
         
@@ -35,6 +40,7 @@ const  handleSigninGoogle = () =>{
     return (
         
   <div className="hero-content flex-col bg-base-200 my-20">
+    <Helmet><title>Login</title></Helmet>
     <div className="text-center lg:text-left">
       <h1 className="text-5xl font-bold">Login now!</h1>
     </div>

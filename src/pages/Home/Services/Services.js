@@ -5,9 +5,9 @@ import Card from '../Card/Card';
 const Services = () => {
 
     const [services, setServices] = useState([])
-    console.log(services)
+    
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://travel-up-server-dipta-sarker.vercel.app/services')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])

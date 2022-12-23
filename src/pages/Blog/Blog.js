@@ -1,8 +1,10 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const Blog = () => {
     return (
         <div>
+                <Helmet><title>Blog</title></Helmet>
             <div tabIndex={0} className="collapse group my-3">
                 <div className="collapse-title  bg-accent text-primary-content group-focus:bg-secondary group-focus:text-secondary-content">
                 Difference between SQL and NoSQL
